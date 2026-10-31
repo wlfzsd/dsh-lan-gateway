@@ -40,17 +40,15 @@ token 校验、cookie 签名、Host/Origin 栅栏、401/403 **全部还是 DSH �
 # 1) 把仓库放到一个固定目录（DSH 会 link 到它，别随手删）
 git clone https://github.com/wlfzsd/dsh-lan-gateway.git D:\tools\dsh-lan-gateway
 
-# 2) 装进 web profile
+# 2) 装进 web profile —— 这一步会把依赖写成 link:，并且自动把
+#    "dsh-lan-gateway" 追加到 dsh.profile.bundles（实测 pnpm v12 / dsh 0.2.2）
 dsh plugin --profile web add D:\tools\dsh-lan-gateway
 
-# 3) 启用 bundle：Web 侧栏「插件」页启用它，或把 "dsh-lan-gateway"
-#    追加到 $DSH_HOME/profiles/web/package.json 的 dsh.profile.bundles
-
-# 4) 重启 dsh web，控制台会打印：
+# 3) 重启 dsh web，控制台会打印：
 #    [lan-gateway] listening on http://192.168.1.10:3081/ -> http://127.0.0.1:3080 (mode=lan)
 ```
 
-也可以直接在 Web 侧栏「插件 → 添加插件」里选这个本地目录。
+若你的 `package.json` 里 `dsh.profile.bundles` 没有被自动追加，就在 Web 侧栏「插件」页启用它，或手工补一行。也可以直接在「插件 → 添加插件」里选这个本地目录。
 
 卸载：`dsh plugin --profile web remove dsh-lan-gateway`，再从 `dsh.profile.bundles` 删掉那一行；或在插件页停用（DSH 立刻回到官方行为）。
 
