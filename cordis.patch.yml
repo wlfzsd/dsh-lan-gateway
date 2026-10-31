@@ -1,0 +1,16 @@
+# dsh-lan-gateway bundle patch — one host-plane row.
+#
+# The row's `config` here is the *default* seed. Runtime settings written from
+# the Settings → Plugins → LAN Gateway panel are stored in
+# $DSH_HOME/lan-gateway.json, which overrides every key below; delete that file
+# to fall back to these values. Changing this file reloads the plugin (the web
+# profile patches live).
+#
+# Override in your profile's own cordis.patch.yml (applied after bundle layers):
+# - id: lan-gateway
+#   config:
+#     mode: list
+#     allow: ['192.168.1.0/24']
+- insert:
+    - id: lan-gateway
+      name: dsh-lan-gateway

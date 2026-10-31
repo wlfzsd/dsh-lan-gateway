@@ -1,0 +1,51 @@
+{
+  "name": "dsh-lan-gateway",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "description": "DSH LAN gateway: a side listener that reverse-proxies the running DSH Web GUI to port+1 (auto-increment when busy), injects the process launch token as a browser session cookie so trusted remote clients need no login, and gates every request by LAN / any / explicit-IP allow rules. It edits no DSH file and replaces no DSH mechanism.",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "verify.mjs",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "dsh-bundle",
+    "deepseek-harness",
+    "lan",
+    "reverse-proxy",
+    "remote-access"
+  ],
+  "author": "wlfzsd",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wlfzsd/dsh-lan-gateway.git"
+  },
+  "homepage": "https://github.com/wlfzsd/dsh-lan-gateway#readme",
+  "bugs": {
+    "url": "https://github.com/wlfzsd/dsh-lan-gateway/issues"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    }
+  }
+}
